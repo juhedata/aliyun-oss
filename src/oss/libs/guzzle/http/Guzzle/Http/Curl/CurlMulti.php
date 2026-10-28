@@ -52,7 +52,7 @@ class CurlMulti extends AbstractHasDispatcher implements CurlMultiInterface
 
     public function __destruct()
     {
-        if (is_resource($this->multiHandle)) {
+        if (is_resource($this->multiHandle) || $this->multiHandle instanceof \CurlMultiHandle) {
             curl_multi_close($this->multiHandle);
         }
     }
@@ -113,7 +113,7 @@ class CurlMulti extends AbstractHasDispatcher implements CurlMultiInterface
         }
     }
 
-    public function count()
+    public function count(): int
     {
         return count($this->requests);
     }
@@ -279,7 +279,7 @@ class CurlMulti extends AbstractHasDispatcher implements CurlMultiInterface
      * @param \Exception       $e       Exception encountered
      * @param bool             $buffer  Set to false to not buffer the exception
      */
-    protected function removeErroredRequest(RequestInterface $request, \Exception $e = null, $buffer = true)
+    protected function removeErroredRequest(RequestInterface $request, ?\Exception $e = null, $buffer = true)
     {
         if ($buffer) {
             $this->exceptions[] = array('request' => $request, 'exception' => $e);

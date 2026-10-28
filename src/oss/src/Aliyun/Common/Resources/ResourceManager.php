@@ -60,7 +60,7 @@ final class ResourceManager {
 	        } else {
 	            $serviceDefaultOptions = require $serviceDirectory.'/Resources/'.self::DEFAULT_OPTION_FILENAME;
                 $defaultOptions = array_merge($defaultOptions, $serviceDefaultOptions);
-	            $this->clientDefaultOptions[$serviceDirectory] = $defaultOptions;
+	            $this->defaultOptions[$serviceDirectory] = $defaultOptions;
 	        }
 	    }
 		return $defaultOptions;

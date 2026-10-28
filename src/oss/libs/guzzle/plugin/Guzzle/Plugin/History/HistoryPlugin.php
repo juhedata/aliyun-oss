@@ -47,7 +47,7 @@ class HistoryPlugin implements EventSubscriberInterface, \IteratorAggregate, \Co
      *
      * @return HistoryPlugin
      */
-    public function add(RequestInterface $request, Response $response = null)
+    public function add(RequestInterface $request, ?Response $response = null)
     {
         if (!$response && $request->getResponse()) {
             $response = $request->getResponse();
@@ -101,7 +101,7 @@ class HistoryPlugin implements EventSubscriberInterface, \IteratorAggregate, \Co
      *
      * @return \ArrayIterator
      */
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         // Return an iterator just like the old iteration of the HistoryPlugin for BC compatibility (use getAll())
         return new \ArrayIterator(array_map(function ($entry) {
@@ -115,7 +115,7 @@ class HistoryPlugin implements EventSubscriberInterface, \IteratorAggregate, \Co
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->transactions);
     }

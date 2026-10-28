@@ -33,7 +33,7 @@ class MockPlugin extends AbstractHasDispatcher implements EventSubscriberInterfa
      * @param bool  $temporary  Set to TRUE to remove the plugin when the queue is empty
      * @param bool  $readBodies Set to TRUE to consume the entity body when a mock is served
      */
-    public function __construct(array $items = null, $temporary = false, $readBodies = false)
+    public function __construct(?array $items = null, $temporary = false, $readBodies = false)
     {
         $this->readBodies = $readBodies;
         $this->temporary = $temporary;
@@ -96,7 +96,7 @@ class MockPlugin extends AbstractHasDispatcher implements EventSubscriberInterfa
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->queue);
     }

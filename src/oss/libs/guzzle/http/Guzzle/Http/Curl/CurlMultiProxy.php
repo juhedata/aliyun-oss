@@ -14,7 +14,7 @@ class CurlMultiProxy extends AbstractHasDispatcher implements CurlMultiInterface
     protected $handles = array();
     protected $groups = array();
     protected $queued = array();
-    protected $maxHandles;
+    protected int $maxHandles;
 
     /**
      * @param int $maxHandles The maximum number of idle CurlMulti handles to allow to remain open
@@ -102,7 +102,7 @@ class CurlMultiProxy extends AbstractHasDispatcher implements CurlMultiInterface
         }
     }
 
-    public function count()
+    public function count(): int
     {
         return count($this->all());
     }

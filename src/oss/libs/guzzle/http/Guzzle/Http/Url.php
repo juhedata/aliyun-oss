@@ -41,8 +41,10 @@ class Url
         $parts += $defaults;
 
         // Convert the query string into a QueryString object
-        if ($parts['query'] || 0 !== strlen($parts['query'])) {
+        if (!empty($parts['query'])) {
             $parts['query'] = QueryString::fromString($parts['query']);
+        } else {
+            $parts['query'] = null;
         }
 
         return new self($parts['scheme'], $parts['host'], $parts['user'],
@@ -120,7 +122,7 @@ class Url
      * @param QueryString|array|string $query    Query string of the URL
      * @param string                   $fragment Fragment of the URL
      */
-    public function __construct($scheme, $host, $username = null, $password = null, $port = null, $path = null, QueryString $query = null, $fragment = null)
+    public function __construct($scheme, $host, $username = null, $password = null, $port = null, $path = null, ?QueryString $query = null, $fragment = null)
     {
         $this->scheme = $scheme;
         $this->host = $host;

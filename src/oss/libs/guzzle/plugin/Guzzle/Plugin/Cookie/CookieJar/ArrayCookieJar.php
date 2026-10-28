@@ -169,7 +169,7 @@ class ArrayCookieJar implements CookieJarInterface, \Serializable
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->cookies);
     }
@@ -179,12 +179,12 @@ class ArrayCookieJar implements CookieJarInterface, \Serializable
      *
      * @return \ArrayIterator
      */
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return new \ArrayIterator($this->cookies);
     }
 
-    public function addCookiesFromResponse(Response $response, RequestInterface $request = null)
+    public function addCookiesFromResponse(Response $response, ?RequestInterface $request = null)
     {
         if ($cookieHeader = $response->getHeader('Set-Cookie')) {
             $parser = ParserRegistry::getInstance()->getParser('cookie');
